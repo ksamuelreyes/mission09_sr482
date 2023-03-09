@@ -9,6 +9,7 @@ namespace mission09_sr482.Models
     {
         public List<BasketLineItem> Items { get; set; } = new List<BasketLineItem>();
 
+        //Add Item Method
         public void AddItem(Book book, int qty)
         {
             BasketLineItem line = Items
@@ -27,6 +28,7 @@ namespace mission09_sr482.Models
                 line.Quantity += qty;
             }
         }
+        //Calculate Total Method
         public double CalculateTotal()
         {
             double sum = Items.Sum(x => x.Quantity * x.Book.Price);

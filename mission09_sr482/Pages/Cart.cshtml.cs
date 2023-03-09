@@ -9,6 +9,7 @@ using mission09_sr482.Models;
 
 namespace mission09_sr482.Pages
 {
+    //Model for Cart Page
     public class CartModel : PageModel
     {
         private IBookRepository repo { get; set; }

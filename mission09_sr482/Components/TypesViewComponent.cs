@@ -15,7 +15,7 @@ namespace mission09_sr482.Components
         {
             repo = temp;
         }
-
+        //Load data
         public IViewComponentResult Invoke()
         {
             ViewBag.SelectedType = RouteData?.Values["bookType"];
