@@ -57,7 +57,7 @@ namespace mission09_sr482
             app.UseRouting();
 
             app.UseAuthorization();
-
+            //endpoints
             app.UseEndpoints(endpoints =>
             {
 
@@ -66,7 +66,6 @@ namespace mission09_sr482
                 endpoints.MapControllerRoute("Paging", "{pageNum}", new { Controller = "Home" , action = "Index", pageNum = 1});
 
                 endpoints.MapControllerRoute("type", "{bookType}", new { Controller = "Home", action = "Index", pageNum = 1 });
-
 
                 endpoints.MapControllerRoute(
                     name: "default",
