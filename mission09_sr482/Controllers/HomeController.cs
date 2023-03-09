@@ -18,7 +18,7 @@ namespace mission09_sr482.Controllers
         {
             repo = temp;
         }
-        public IActionResult Index(int pageNum = 1)
+        public IActionResult Index(string bookType, int pageNum = 1)
         {
             int pageSize = 10;
             //Create BooksViewModel model
@@ -26,6 +26,7 @@ namespace mission09_sr482.Controllers
             {
                 //Load in books repo
                 Books = repo.Books
+                .Where(p => p.Category == bookType || bookType == null)
                 .OrderBy(p => p.Title)
                 .Skip((pageNum - 1) * pageSize)
                 .Take(pageSize),
@@ -33,7 +34,7 @@ namespace mission09_sr482.Controllers
                 //New PageInfo model
                 PageInfo = new PageInfo
                 {
-                    TotalNumBooks = repo.Books.Count(),
+                    TotalNumBooks = (bookType == null ? repo.Books.Count() : repo.Books.Where(x => x.Category == bookType).Count()),
                     BooksPerPage = pageSize,
                     CurrentPage = pageNum
                 }

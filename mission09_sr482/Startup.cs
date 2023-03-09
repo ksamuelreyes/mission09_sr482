@@ -25,7 +25,10 @@ namespace mission09_sr482
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddRazorPages();
             services.AddControllersWithViews();
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
             services.AddDbContext<BookstoreContext> (options =>
             {
@@ -50,16 +53,26 @@ namespace mission09_sr482
             }
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.UseSession();
             app.UseRouting();
 
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
+
+                endpoints.MapControllerRoute("typepage", "{bookType}/page{pageNum}", new { Controller = "Home", action = "Index" });
+
+                endpoints.MapControllerRoute("Paging", "{pageNum}", new { Controller = "Home" , action = "Index", pageNum = 1});
+
+                endpoints.MapControllerRoute("type", "{bookType}", new { Controller = "Home", action = "Index", pageNum = 1 });
+
+
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
+
+                endpoints.MapRazorPages();
             });
         }
     }
