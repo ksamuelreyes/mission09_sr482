@@ -21,6 +21,7 @@ namespace mission09_sr482.Models
         }
 
         public DbSet<Book> Books { get; set; }
+        public DbSet<Checkout> Checkouts { get; set; }
 
     }
 }
